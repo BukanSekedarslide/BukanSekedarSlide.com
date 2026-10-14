@@ -1,0 +1,520 @@
+/* Konfigurasi Variabel Warna */
+:root {
+    --bg-color: #f1f5f9;
+    --text-color: #0f172a;
+    --primary-color: #0a192f;
+    --secondary-color: #1e3a8a;
+    --accent-color: #38bdf8;
+    --card-bg: #ffffff;
+    --border-color: #cbd5e1;
+}
+
+/* Konfigurasi Tema Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #020617;
+    --text-color: #f8fafc;
+    --primary-color: #0a192f;
+    --secondary-color: #0f172a;
+    --accent-color: #38bdf8;
+    --card-bg: #112240;
+    --border-color: #1e293b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Fitur Smooth Scrolling */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+}
+
+/* Navigasi - Efek Glassmorphism */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    
+    /* Efek Kaca Buram (Glassmorphism) */
+    background: rgba(10, 25, 47, 0.75); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: white;
+}
+
+.brand-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.btn-icon:hover {
+    transform: scale(1.1);
+    color: var(--accent-color);
+}
+
+#cart-count {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 7px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 5rem 5%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #ffffff;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #cbd5e1;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #0f172a;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s, background-color 0.2s;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    background-color: #7dd3fc;
+}
+
+/* Grid & Section Universal */
+section {
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 2.5rem;
+    color: var(--text-color);
+    font-size: 2.2rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+}
+
+.card i {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+/* Testimonial & Review */
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+.testimonial-author {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* Services */
+.service-card .price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin: 20px 0;
+}
+
+.btn-secondary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    margin-bottom: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-color);
+    color: #0f172a;
+}
+
+.btn-detail {
+    background-color: var(--secondary-color);
+}
+
+/* Social Media */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    padding: 12px 25px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s;
+}
+
+.social-btn:hover {
+    transform: scale(1.05);
+}
+
+.youtube { background-color: #ff0000; }
+.tiktok { background-color: #000000; }
+.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.lynk { background-color: #3b82f6; }
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+}
+
+/* WhatsApp Mengambang */
+.floating-wa {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s;
+    text-decoration: none;
+}
+
+.floating-wa:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Modal Universal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    color: var(--text-color);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close-btn, .close-preview-btn {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* Keranjang Styling */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.qty-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.cart-summary {
+    margin-top: 30px;
+    border-top: 2px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.cart-summary h3 {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.cart-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.checkout-btn {
+    flex: 2;
+    font-size: 1.1rem;
+}
+
+.clear-cart-btn {
+    flex: 1;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.clear-cart-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Preview Image Placeholder */
+.preview-image-placeholder {
+    width: 100%;
+    height: 250px;
+    background-color: var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+/* Toast Notification (Pengganti Alert) */
+.toast-notification {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ef4444;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.4s, bottom 0.4s;
+    pointer-events: none;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.toast-notification.show {
+    opacity: 1;
+    bottom: 40px;
+}
+
+/* Accordion FAQ */
+.accordion-btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: 0.4s;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-btn.active, .accordion-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-panel {
+    padding: 0 18px;
+    background-color: var(--bg-color);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.accordion-panel p {
+    padding: 15px 0;
+}
+
+/* --- ANIMASI LAYAR LOADING (PRELOADER) --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.pulse-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: white;
+    /* Animasi Berdenyut */
+    animation: pulse-glow 1.5s infinite;
+}
+
+@keyframes pulse-glow {
+    0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+    100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
+
+/* Responsif HP */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+    .brand-name { font-size: 1rem; }
+    .logo { height: 35px; width: 35px; }
+    .cart-actions { flex-direction: column; }
+    .clear-cart-btn { padding: 12px; }
+}
