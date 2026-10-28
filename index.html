@@ -1,126 +1,188 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Meta Tags SEO & Sosial Media -->
-    <meta name="description" content="BukanSekedarSlide (BSS) - Jasa pembuatan presentasi PPT profesional dan penyedia template PPT premium siap pakai dengan harga terjangkau.">
-    <meta property="og:title" content="BukanSekedarSlide - Jasa PPT Profesional">
-    <meta property="og:description" content="Solusi praktis dan cepat untuk presentasi Anda. Mulai dari Rp 10.000 saja.">
-    <meta property="og:image" content="WhatsApp Image 2026-09-17 at 07.38.14.jpeg">
-    <title>BukanSekedarSlide (BSS) - Jasa PPT Profesional</title>
-    
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BukanSekedarSlide – Sewa Template & Jasa PPT</title>
+<meta name="description" content="BukanSekedarSlide (BSS): sewa template presentasi PowerPoint dan jasa pembuatan PPT untuk pelajar, mahasiswa, guru, pekerja, dan pemilik bisnis.">
+<meta name="theme-color" content="#66705B">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BukanSekedarSlide – Sewa Template & Jasa PPT">
+<meta property="og:description" content="Temukan template presentasi yang tepat atau wujudkan ide kamu menjadi slide yang rapi dan profesional.">
+<meta property="og:url" content="https://bukansekedarslide.my.id/">
+<meta property="og:image" content="https://bukansekedarslide.my.id/assets/logo.png">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- LAYAR LOADING / PRELOADER -->
-    <div id="preloader">
-        <img src="WhatsApp Image 2026-09-17 at 07.38.14.jpeg" alt="BSS Logo" class="pulse-logo">
-    </div>
+<a class="skip" href="#main">Lewati ke konten</a>
 
-
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="WhatsApp Image 2026-09-17 at 07.38.14.jpeg" alt="BSS Logo" class="logo">
-            <span class="brand-name">BukanSekedarSlide</span>
-        </div>
-        <div class="nav-controls" style="display: flex; align-items: center; gap: 15px;">
-            <a href="cara-order.html" style="color: #ffffff; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='#ffffff'">Cara Order</a>
-            <button id="theme-toggle" class="btn-icon" title="Ganti Tema"><i class="fas fa-sun"></i></button>
-            <button id="cart-toggle" class="btn-icon" title="Keranjang Belanja">
-                <i class="fas fa-shopping-cart"></i>
-                <span id="cart-count">0</span>
-            </button>
-        </div>
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a href="#beranda" class="brand"><img src="assets/logo.png" alt="Logo BukanSekedarSlide (BSS)"></a>
+    <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <nav id="menu" class="menu" aria-label="Navigasi utama">
+      <a href="#beranda">Beranda</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#template">Template</a>
+      <a href="#portofolio">Portofolio</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontak">Kontak</a>
+      <a class="btn btn-brown" data-wa="Halo BukanSekedarSlide, saya ingin memesan layanan.">Pesan Sekarang</a>
     </nav>
+  </div>
+</header>
 
-    <header class="hero">
-        <h1>Tingkatkan Kualitas Presentasimu Bersama BSS</h1>
-        <p>Solusi praktis dan cepat untuk kebutuhan presentasi profesional Anda. Didesain dengan gaya modern dan kekinian.</p>
-        <a href="#services" class="btn-primary">Lihat Layanan</a>
-    </header>
-
-    <section class="advantages">
-        <h2>Keunggulan Kami</h2>
-        <div class="grid-container">
-            <div class="card">
-                <i class="fas fa-paint-brush fa-3x"></i>
-                <h3>Modern & Kekinian</h3>
-                <p>Desain slide yang selalu up-to-date mengikuti tren masa kini agar presentasi tidak membosankan.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-bolt fa-3x"></i>
-                <h3>Cepat</h3>
-                <p>Proses pengerjaan kilat dan efisien tanpa pernah mengorbankan kualitas desain.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-wallet fa-3x"></i>
-                <h3>Harga Ramah di Kantong</h3>
-                <p>Mendapatkan kualitas visual yang berkelas premium dengan harga yang sangat terjangkau.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="services">
-        <h2>Layanan Kami</h2>
-        <div class="grid-container">
-            <div class="card service-card">
-                <h3>Template Vault</h3>
-                <p>Menjual berbagai macam template PPT siap pakai. Tinggal ganti teks dan gambar.</p>
-                <div class="price">Mulai Rp 10.000</div>
-                <a href="template-vault.html" class="btn-secondary" style="display:block; text-decoration:none; text-align:center;">Lihat Koleksi Template</a>
-            </div>
-            
-            <div class="card service-card">
-                <h3>Custom Express</h3>
-                <p>Pembuatan slide presentasi eksklusif dari titik nol (0) menyesuaikan materi Anda.</p>
-                <div class="price">Rp 10.000</div>
-                <button class="btn-secondary add-to-cart" data-id="2" data-name="Custom Express" data-price="10000">Tambah ke Keranjang</button>
-            </div>
-            
-            <div class="card service-card">
-                <h3>Beautifying Slide</h3>
-                <p>Memperbagus dan menata ulang layout slide presentasi lama Anda menjadi estetik.</p>
-                <div class="price">Rp 10.000</div>
-                <button class="btn-secondary add-to-cart" data-id="3" data-name="Beautifying Slide" data-price="10000">Tambah ke Keranjang</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="social-media">
-        <h2>Temukan Kami di</h2>
-        <div class="social-links">
-            <a href="https://youtube.com/@bss-isrewaya?si=ung7dDYTsQnyVwPO" target="_blank" class="social-btn youtube"><i class="fab fa-youtube"></i> YouTube</a>
-            <a href="https://www.tiktok.com/@bss_isrewaya?_r=1&_t=ZS-99itCKttjhx" target="_blank" class="social-btn tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a href="https://www.instagram.com/bss_isrewaya?stkn=MTluOWN1aDF6c3lyMQ==" target="_blank" class="social-btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://lynk.id/bukansekedarslide" target="_blank" class="social-btn lynk"><i class="fas fa-link"></i> Lynk.id</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 BukanSekedarSlide (BSS). All rights reserved.</p>
-    </footer>
-
-    <a href="https://wa.me/6285700216371" target="_blank" class="floating-wa" title="Hubungi Kami via WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Keranjang Pesanan</h2>
-            <div id="cart-items"></div>
-            <div class="cart-summary">
-                <h3>Total Bayar: <span id="cart-total">Rp 0</span></h3>
-                <div class="cart-actions">
-                    <button id="clear-cart-btn" class="clear-cart-btn" title="Kosongkan Keranjang"><i class="fas fa-trash"></i> Kosongkan</button>
-                    <button id="checkout-btn" class="btn-primary checkout-btn">Pesan via WhatsApp</button>
-                </div>
-            </div>
-        </div>
+<main id="main">
+<section class="hero" id="beranda">
+  <div class="wrap hero-in">
+    <div class="reveal">
+      <p class="eyebrow">Sewa Template & Jasa PPT</p>
+      <h1>Presentasi Bukan Sekadar Slide.</h1>
+      <p class="lead">Temukan template presentasi yang tepat atau wujudkan ide kamu menjadi slide yang rapi, menarik, dan profesional.</p>
+      <div class="actions">
+        <a class="btn btn-dark" href="#template">Jelajahi Template</a>
+        <a class="btn btn-line" data-wa="Halo BukanSekedarSlide, saya ingin memesan jasa pembuatan PPT.">Pesan Jasa PPT</a>
+      </div>
     </div>
+    <div class="mock reveal" aria-hidden="true">
+      <div class="slide s1 big"><i></i><b></b><u></u></div>
+      <div class="slide s2 sm1"><i></i><b></b><u></u></div>
+      <div class="slide s3 sm2"><i></i><b></b><u></u></div>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<section class="sec alt" id="layanan">
+  <div class="wrap">
+    <h2 class="reveal">Layanan Kami</h2>
+    <div class="grid2">
+      <article class="card reveal">
+        <h3>Sewa Template PPT</h3>
+        <ul>
+          <li>Template siap pakai sesuai ketentuan lisensi.</li>
+          <li>Berbagai kategori dan gaya desain.</li>
+          <li>Harga dan durasi sewa: <em>[placeholder, dikonfirmasi admin]</em></li>
+        </ul>
+        <a class="btn btn-dark" href="#template">Lihat Katalog</a>
+      </article>
+      <article class="card reveal">
+        <h3>Jasa Pembuatan PPT</h3>
+        <ul>
+          <li>Desain sesuai kebutuhan: tugas sekolah, kuliah, bisnis, proposal, dan laporan.</li>
+          <li>Paket layanan: <em>[placeholder, dikonfirmasi admin]</em></li>
+        </ul>
+        <a class="btn btn-brown" data-wa="Halo BukanSekedarSlide, saya ingin konsultasi jasa pembuatan PPT.">Konsultasi & Pesan</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="template">
+  <div class="wrap">
+    <h2 class="reveal">Katalog Template</h2>
+    <p class="note">Data di bawah adalah <strong>contoh demo</strong>, bukan produk yang sudah tersedia.</p>
+    <div class="tools">
+      <label class="sr" for="search">Cari template</label>
+      <input id="search" type="search" placeholder="Cari template…">
+      <div class="chips" id="chips" role="group" aria-label="Filter kategori"></div>
+    </div>
+    <div class="catalog" id="catalog" aria-live="polite"></div>
+    <p class="empty" id="empty" hidden>Template tidak ditemukan. Coba kata kunci atau kategori lain.</p>
+  </div>
+</section>
+
+<section class="sec alt" id="portofolio">
+  <div class="wrap">
+    <h2 class="reveal">Portofolio</h2>
+    <p class="note">Mockup gaya desain (ilustrasi demo).</p>
+    <div class="grid5">
+      <figure class="reveal"><div class="slide s1"><i></i><b></b><u></u></div><figcaption>Minimalis Profesional</figcaption></figure>
+      <figure class="reveal"><div class="slide s5"><i></i><b></b><u></u></div><figcaption>Modern & Kreatif</figcaption></figure>
+      <figure class="reveal"><div class="slide s3"><i></i><b></b><u></u></div><figcaption>Earth Tone</figcaption></figure>
+      <figure class="reveal"><div class="slide s4"><i></i><b></b><u></u></div><figcaption>Pendidikan</figcaption></figure>
+      <figure class="reveal"><div class="slide s2"><i></i><b></b><u></u></div><figcaption>Bisnis & Data</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="reveal">Kenapa BukanSekedarSlide?</h2>
+    <div class="grid5 why">
+      <div class="card reveal"><h3>Desain Terstruktur</h3></div>
+      <div class="card reveal"><h3>Visual Nyaman Dilihat</h3></div>
+      <div class="card reveal"><h3>Gaya Beragam</h3></div>
+      <div class="card reveal"><h3>Pemesanan Sederhana</h3></div>
+      <div class="card reveal"><h3>Komunikasi Jelas</h3></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="cara">
+  <div class="wrap">
+    <h2 class="reveal">Cara Pemesanan</h2>
+    <ol class="steps">
+      <li class="reveal">Pilih template atau jasa PPT.</li>
+      <li class="reveal">Hubungi admin.</li>
+      <li class="reveal">Konfirmasi harga dan ketentuan.</li>
+      <li class="reveal">Lakukan pembayaran sesuai kesepakatan.</li>
+      <li class="reveal">Terima produk atau hasil pengerjaan.</li>
+    </ol>
+    <p class="note">Detail pembayaran dan penyerahan dikonfirmasi oleh admin.</p>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap narrow">
+    <h2 class="reveal">Pertanyaan Umum</h2>
+    <details><summary>Apa itu BukanSekedarSlide?</summary><p>BukanSekedarSlide (BSS) adalah layanan sewa template presentasi PowerPoint dan jasa pembuatan PPT.</p></details>
+    <details><summary>Bagaimana cara menyewa template?</summary><p>Pilih template di katalog, klik “Pesan Template”, lalu admin akan mengonfirmasi harga, durasi, dan ketentuan sewa lewat WhatsApp.</p></details>
+    <details><summary>Apakah template bisa diedit?</summary><p>[Isi sesuai kebijakan BSS, misalnya: ya, konten dapat diedit sesuai ketentuan lisensi.]</p></details>
+    <details><summary>Bagaimana cara memesan jasa PPT?</summary><p>Klik “Pesan Jasa PPT”, ceritakan kebutuhan dan tenggat waktumu, lalu admin akan mengonfirmasi paket dan harga.</p></details>
+    <details><summary>Apa saja format file yang tersedia?</summary><p>[Isi sesuai produk, misalnya: .pptx]</p></details>
+    <details><summary>Bagaimana ketentuan revisi?</summary><p>[Isi sesuai kebijakan revisi BSS.]</p></details>
+    <details><summary>Bagaimana cara menghubungi admin?</summary><p>Lewat tombol WhatsApp, Instagram, atau email di bagian Kontak.</p></details>
+  </div>
+</section>
+
+<section class="sec cta" id="kontak">
+  <div class="wrap narrow center">
+    <h2 class="reveal">Punya Ide? Mari Wujudkan Jadi Presentasi.</h2>
+    <div class="actions center">
+      <a class="btn btn-brown" data-wa="Halo BukanSekedarSlide, saya ingin bertanya tentang layanan dan template presentasi yang tersedia.">WhatsApp</a>
+      <a class="btn btn-line" id="ig" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-line" id="mail">Email</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <img src="assets/logo.png" alt="Logo BSS" class="flogo">
+      <p>Sewa template presentasi dan jasa pembuatan PPT yang rapi, menarik, dan profesional.</p>
+    </div>
+    <nav aria-label="Navigasi footer">
+      <a href="#layanan">Layanan</a><a href="#template">Template</a><a href="#portofolio">Portofolio</a><a href="#faq">FAQ</a><a href="#kontak">Kontak</a>
+    </nav>
+    <nav aria-label="Tautan lain">
+      <a id="ig2" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" data-soon>Kebijakan Privasi</a>
+      <a href="#" data-soon>Syarat Layanan</a>
+    </nav>
+  </div>
+  <p class="copy">© <span id="year"></span> BukanSekedarSlide. Semua hak dilindungi.</p>
+</footer>
+
+<a href="#top" class="totop" id="totop" aria-label="Kembali ke atas" hidden>↑</a>
+
+<dialog id="dlg" aria-labelledby="dtitle">
+  <button class="close" id="dclose" aria-label="Tutup">×</button>
+  <div id="dbody"></div>
+</dialog>
+
+<script src="script.js"></script>
 </body>
 </html>

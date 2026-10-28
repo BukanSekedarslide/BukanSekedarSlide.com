@@ -1,308 +1,104 @@
-// --- FITUR LOADING SCREEN (PRELOADER) ---
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        // Delay 0.8 detik agar animasi logonya sempat terlihat estetik
-        setTimeout(() => {
-            preloader.classList.add('fade-out');
-        }, 800); 
-    }
-});
-// Mengambil data keranjang dari penyimpanan lokal (browser)
-let cart = JSON.parse(localStorage.getItem('bss_cart')) || [];
-
-// Deklarasi Elemen DOM
-const themeToggleBtn = document.getElementById('theme-toggle');
-const body = document.body;
-const cartToggleBtn = document.getElementById('cart-toggle');
-const cartModal = document.getElementById('cart-modal');
-const closeBtn = document.querySelector('.close-btn');
-const cartItemsContainer = document.getElementById('cart-items');
-const cartTotalElement = document.getElementById('cart-total');
-const cartCountElement = document.getElementById('cart-count');
-const checkoutBtn = document.getElementById('checkout-btn');
-
-// --- SISTEM TOAST NOTIFICATION (Pengganti Alert) ---
-function showToast(message, color = "#ef4444") {
-    let toast = document.getElementById("toast");
-    if (!toast) {
-        toast = document.createElement("div");
-        toast.id = "toast";
-        toast.className = "toast-notification";
-        document.body.appendChild(toast);
-    }
-    toast.innerText = message;
-    toast.style.backgroundColor = color;
-    toast.classList.add("show");
-    
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 3000);
-}
-
-// --- FITUR DARK MODE ---
-const currentTheme = localStorage.getItem('bss_theme') || 'dark'; 
-body.setAttribute('data-theme', currentTheme);
-updateThemeIcon(currentTheme);
-
-if(themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-        let theme = body.getAttribute('data-theme');
-        if (theme === 'dark') {
-            body.setAttribute('data-theme', 'light');
-            localStorage.setItem('bss_theme', 'light');
-            updateThemeIcon('light');
-        } else {
-            body.setAttribute('data-theme', 'dark');
-            localStorage.setItem('bss_theme', 'dark');
-            updateThemeIcon('dark');
-        }
-    });
-}
-
-function updateThemeIcon(theme) {
-    if(!themeToggleBtn) return;
-    if (theme === 'dark') {
-        themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-        themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-    }
-}
-
-// --- FITUR FORMAT UANG RUPIAH ---
-const formatRupiah = (number) => {
-    return new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-        minimumFractionDigits: 0
-    }).format(number);
+/* ========== KONFIGURASI (edit di sini) ========== */
+const CONFIG = {
+  waNumber: "628XXXXXXXXXX",          // format internasional tanpa +, spasi, atau strip
+  instagram: "https://instagram.com/", // ganti dengan link Instagram BSS
+  email: "email@contoh.com"            // ganti dengan email BSS
 };
 
-// --- FITUR KALKULATOR KERANJANG ---
-function updateCart() {
-    if (!cartItemsContainer) return;
-    
-    cartItemsContainer.innerHTML = '';
-    let total = 0;
-    let count = 0;
+/* Data DEMO. Ganti dengan template asli. theme = s1..s5 (warna mockup) */
+const TEMPLATES = [
+  {name:"Contoh Edu Bersih", cat:"Pendidikan", theme:"s4", desc:"Layout rapi untuk tugas dan presentasi kelas.", slides:"XX", format:".pptx"},
+  {name:"Contoh Bisnis Data", cat:"Bisnis", theme:"s2", desc:"Cocok untuk laporan dan presentasi data.", slides:"XX", format:".pptx"},
+  {name:"Contoh Proposal Hangat", cat:"Proposal", theme:"s3", desc:"Struktur proposal dengan nuansa earth tone.", slides:"XX", format:".pptx"},
+  {name:"Contoh Seminar Fokus", cat:"Seminar", theme:"s5", desc:"Slide jelas untuk pemaparan seminar.", slides:"XX", format:".pptx"},
+  {name:"Contoh Minimalis Sage", cat:"Minimalis", theme:"s1", desc:"Tampilan sederhana dan elegan.", slides:"XX", format:".pptx"},
+  {name:"Contoh Kreatif Warna", cat:"Kreatif", theme:"s3", desc:"Komposisi berani untuk ide kreatif.", slides:"XX", format:".pptx"}
+];
+const CATS = ["Semua","Pendidikan","Bisnis","Proposal","Seminar","Minimalis","Kreatif"];
 
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p style="text-align:center; padding:20px; opacity:0.7;">Keranjang Anda masih kosong.</p>';
-    } else {
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            total += itemTotal;
-            count += item.quantity;
-
-            const div = document.createElement('div');
-            div.className = 'cart-item';
-            div.innerHTML = `
-                <div>
-                    <h4 style="margin-bottom:5px;">${item.name}</h4>
-                    <small>${formatRupiah(item.price)}</small>
-                </div>
-                <div class="cart-item-controls">
-                    <button class="qty-btn minus" data-id="${item.id}">-</button>
-                    <span style="font-weight:bold; min-width:20px; text-align:center;">${item.quantity}</span>
-                    <button class="qty-btn plus" data-id="${item.id}">+</button>
-                </div>
-            `;
-            cartItemsContainer.appendChild(div);
-        });
-    }
-
-    if (cartTotalElement) cartTotalElement.innerText = formatRupiah(total);
-    if (cartCountElement) cartCountElement.innerText = count;
-
-    document.querySelectorAll('.qty-btn.plus').forEach(btn => {
-        btn.addEventListener('click', (e) => changeQty(e.target.dataset.id, 1));
-    });
-    document.querySelectorAll('.qty-btn.minus').forEach(btn => {
-        btn.addEventListener('click', (e) => changeQty(e.target.dataset.id, -1));
-    });
-
-    localStorage.setItem('bss_cart', JSON.stringify(cart));
-}
-
-function changeQty(id, change) {
-    const item = cart.find(i => i.id === id);
-    if (item) {
-        item.quantity += change;
-        if (item.quantity <= 0) {
-            cart = cart.filter(i => i.id !== id);
-        }
-        updateCart();
-    }
-}
-
-// --- EVENT DELEGATION (Menangani Semua Klik Dinamis) ---
-document.addEventListener('click', (e) => {
-    
-    // 1. Fitur Tambah ke Keranjang
-    if (e.target.classList.contains('add-to-cart')) {
-        const button = e.target;
-        const id = button.dataset.id;
-        const name = button.dataset.name;
-        const price = parseInt(button.dataset.price);
-
-        const existingItem = cart.find(item => item.id === id);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({ id, name, price, quantity: 1 });
-        }
-        updateCart();
-        
-        showToast("✓ Berhasil ditambahkan ke keranjang!", "#25d366");
-        
-        const originalText = button.innerText;
-        button.innerText = "✓ Dimasukkan";
-        button.style.backgroundColor = "#25d366";
-        button.style.color = "white";
-        
-        setTimeout(() => {
-            button.innerText = originalText;
-            button.style.backgroundColor = "";
-            button.style.color = "";
-        }, 1500);
-    }
-
-    // 2. Fitur Kosongkan Keranjang (Telah Diperbaiki)
-    const clearBtn = e.target.closest('#clear-cart-btn');
-    if (clearBtn) {
-        if (cart.length > 0) {
-            cart = []; 
-            updateCart(); 
-            showToast("Keranjang berhasil dikosongkan!", "#3b82f6");
-        } else {
-            showToast("Keranjang sudah kosong.", "#f97316"); 
-        }
-    }
-});
-
-// Modal Keranjang
-if (cartToggleBtn && cartModal) {
-    cartToggleBtn.addEventListener('click', () => { cartModal.style.display = 'block'; });
-    closeBtn.addEventListener('click', () => { cartModal.style.display = 'none'; });
-    window.addEventListener('click', (e) => { if (e.target == cartModal) cartModal.style.display = 'none'; });
-}
-
-// Fitur Checkout WA
-if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-        if (cart.length === 0) {
-            showToast("Keranjang Anda masih kosong!");
-            return;
-        }
-        
-        let text = "Halo Admin *BukanSekedarSlide*, saya ingin memesan layanan berikut:\n\n";
-        let total = 0;
-        
-        cart.forEach(item => {
-            text += `▪️ ${item.name} (${item.quantity}x) : ${formatRupiah(item.price * item.quantity)}\n`;
-            total += item.price * item.quantity;
-        });
-        
-        text += `\n*Total Pembayaran : ${formatRupiah(total)}*\n\nMohon informasi pembayarannya, terima kasih.`;
-        
-        const adminPhone = "6285700216371"; 
-        const waUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(text)}`;
-        window.open(waUrl, '_blank');
-    });
-}
-
-// --- FITUR SEARCH & FILTER (Template Vault) ---
-const searchInput = document.getElementById('search-input');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const productCards = document.querySelectorAll('.item-card');
-const noResultMsg = document.getElementById('no-result');
-let currentCategory = 'all';
-
-function filterProducts() {
-    const query = searchInput ? searchInput.value.toLowerCase() : '';
-    let visibleCount = 0;
-
-    productCards.forEach(card => {
-        const category = card.dataset.category;
-        const name = card.dataset.name.toLowerCase();
-        const matchesCategory = (currentCategory === 'all' || category === currentCategory);
-        const matchesSearch = name.includes(query);
-
-        if (matchesCategory && matchesSearch) {
-            card.style.display = 'block';
-            visibleCount++;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    if (noResultMsg) {
-        noResultMsg.style.display = (visibleCount === 0) ? 'block' : 'none';
-    }
-}
-
-if (searchInput) searchInput.addEventListener('input', filterProducts);
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentCategory = btn.dataset.filter;
-        filterProducts();
-    });
-});
-
-// --- FITUR ACCORDION FAQ (Cara Order) ---
-const acc = document.getElementsByClassName("accordion-btn");
-for (let i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    const icon = this.querySelector("i");
-    if(this.classList.contains("active")){
-        icon.classList.remove("fa-plus");
-        icon.classList.add("fa-minus");
-    } else {
-        icon.classList.remove("fa-minus");
-        icon.classList.add("fa-plus");
-    }
-    
-    let panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
+/* ========== WhatsApp ========== */
+const waUrl = msg => `https://wa.me/${CONFIG.waNumber}?text=${encodeURIComponent(msg)}`;
+function bindWA(root=document){
+  root.querySelectorAll("[data-wa]").forEach(a=>{
+    a.href = waUrl(a.dataset.wa);
+    a.target = "_blank"; a.rel = "noopener";
   });
 }
 
-// --- FITUR MODAL PREVIEW DETAIL TEMPLATE ---
-const previewBtns = document.querySelectorAll('.preview-btn');
-const previewModal = document.getElementById('preview-modal');
-const closePreviewBtn = document.querySelector('.close-preview-btn');
+/* ========== Menu mobile ========== */
+const burger = document.getElementById("burger"), menu = document.getElementById("menu");
+burger.addEventListener("click",()=>{
+  const open = menu.classList.toggle("open");
+  burger.setAttribute("aria-expanded", open);
+});
+menu.addEventListener("click",e=>{ if(e.target.tagName==="A"){ menu.classList.remove("open"); burger.setAttribute("aria-expanded","false"); }});
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ menu.classList.remove("open"); burger.setAttribute("aria-expanded","false"); }});
 
-if(previewBtns && previewModal) {
-    previewBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const card = e.target.closest('.item-card');
-            const title = card.dataset.name;
-            const desc = card.querySelector('p').innerText;
-            
-            document.getElementById('preview-title').innerText = title;
-            document.getElementById('preview-desc').innerText = desc;
-            
-            previewModal.style.display = 'block';
-        });
-    });
+/* ========== Katalog ========== */
+const $ = id => document.getElementById(id);
+let activeCat = "Semua";
+const preview = t => `<div class="slide ${t.theme}"><i></i><b></b><u></u></div>`;
 
-    closePreviewBtn.addEventListener('click', () => {
-        previewModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target == previewModal) {
-            previewModal.style.display = 'none';
-        }
-    });
+function renderChips(){
+  $("chips").innerHTML = CATS.map(c=>`<button class="chip" type="button" aria-pressed="${c===activeCat}" data-cat="${c}">${c}</button>`).join("");
 }
+function renderCatalog(){
+  const q = $("search").value.trim().toLowerCase();
+  const list = TEMPLATES.map((t,i)=>({...t,i})).filter(t =>
+    (activeCat==="Semua" || t.cat===activeCat) &&
+    (t.name+" "+t.cat+" "+t.desc).toLowerCase().includes(q));
+  $("catalog").innerHTML = list.map(t=>`
+    <article class="tcard">
+      ${preview(t)}
+      <span class="demo">CONTOH DEMO</span>
+      <h3>${t.name}</h3><span class="tag">${t.cat}</span>
+      <p>${t.desc}</p>
+      <span class="price">Rp XXX <small>(placeholder)</small></span>
+      <div class="row">
+        <button class="btn btn-line" type="button" data-detail="${t.i}">Lihat Detail</button>
+        <a class="btn btn-brown" data-wa="Halo BukanSekedarSlide, saya ingin memesan template: ${t.name}.">Pesan Template</a>
+      </div>
+    </article>`).join("");
+  $("empty").hidden = list.length > 0;
+  bindWA($("catalog"));
+}
+$("chips").addEventListener("click",e=>{
+  const b = e.target.closest("[data-cat]"); if(!b) return;
+  activeCat = b.dataset.cat; renderChips(); renderCatalog();
+});
+$("search").addEventListener("input",renderCatalog);
 
-// Render cart saat dimuat
-updateCart();
+/* ========== Detail produk (dialog) ========== */
+const dlg = $("dlg");
+$("catalog").addEventListener("click",e=>{
+  const b = e.target.closest("[data-detail]"); if(!b) return;
+  const t = TEMPLATES[b.dataset.detail];
+  $("dbody").innerHTML = `
+    <h3 id="dtitle">${t.name}</h3><span class="demo">CONTOH DEMO</span>
+    <div class="prev">${preview(t)}${preview({theme:"s2"})}${preview({theme:"s3"})}</div>
+    <p>${t.desc}</p>
+    <dl><dt>Kategori</dt><dd>${t.cat}</dd><dt>Jumlah slide</dt><dd>${t.slides}</dd>
+    <dt>Format</dt><dd>${t.format}</dd><dt>Harga</dt><dd>Rp XXX (placeholder)</dd>
+    <dt>Ketentuan</dt><dd>Ketentuan sewa dan penggunaan dikonfirmasi admin.</dd></dl>
+    <a class="btn btn-brown" data-wa="Halo BukanSekedarSlide, saya ingin memesan template: ${t.name}.">Pesan via WhatsApp</a>`;
+  bindWA($("dbody"));
+  dlg.showModal();
+});
+$("dclose").addEventListener("click",()=>dlg.close());
+dlg.addEventListener("click",e=>{ if(e.target===dlg) dlg.close(); });
+
+/* ========== Lain-lain ========== */
+$("year").textContent = new Date().getFullYear();
+$("ig").href = $("ig2").href = CONFIG.instagram;
+$("mail").href = "mailto:" + CONFIG.email;
+document.querySelectorAll("[data-soon]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();alert("Halaman ini akan segera tersedia.");}));
+
+const totop = $("totop");
+addEventListener("scroll",()=>{ totop.hidden = scrollY < 500; },{passive:true});
+
+if("IntersectionObserver" in window){
+  const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target);} }),{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+} else document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"));
+
+renderChips(); renderCatalog(); bindWA();
